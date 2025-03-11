@@ -1,10 +1,16 @@
+@import url("https://fonts.cdnfonts.com/css/general-sans");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  outline: auo;
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  background-color: #dfdff0;
+  font-family: "General Sans", sans-serif;
 }
+
 @layer base {
   @font-face {
     font-family: "circular-web";
@@ -32,179 +38,7 @@
   }
 }
 
-:root {
-  --background: #ffffff;
-}
-body {
-  @apply bg-gray-50 text-gray-900  overflow-x-hidden w-[100dvw] font-sans;
-}
-
 @layer utilities {
-  .hide-scroll::-webkit-scrollbar {
-    display: none;
-  }
-
-  .hide-scroll {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  .indicator-line.active {
-    animation: indicator-line 0.5s ease infinite;
-    animation-delay: calc(attr(data-animation-order number) * 0.1s);
-  }
-
-  @keyframes indicator-line {
-    0% {
-      height: 4px;
-      transform: translateY(-0px);
-    }
-    50% {
-      height: 16px;
-      transform: translateY(-4px);
-    }
-    100% {
-      height: 4px;
-      transform: translateY(-0px);
-    }
-  }
-  .indicator-line {
-    @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
-  }
-  .animated-word {
-    @apply special-font font-zentry font-black opacity-0;
-    transform: translate3d(10px, 51px, -60px) rotateY(60deg) rotateX(-40deg);
-    transform-origin: 50% 50% -150px !important;
-    will-change: opacity, transform;
-  }
-  .special-font b {
-    font-family: "Zentry";
-    font-feature-settings: "ss01" on;
-  }
-  .center {
-    @apply -translate-x-1/2 -translate-y-1/2;
-  }
-  .-relative-1 {
-    @apply relative -z-1;
-  }
-  .relative-0 {
-    @apply relative z-0;
-  }
-  .relative-1 {
-    @apply relative z-1;
-  }
-  .relative-2 {
-    @apply relative z-2;
-  }
-  .relative-3 {
-    @apply relative z-3;
-  }
-  .relative-4 {
-    @apply relative z-4;
-  }
-  .relative-5 {
-    @apply relative z-5;
-  }
-  .relative-6 {
-    @apply relative z-6;
-  }
-  .relative-7 {
-    @apply relative z-7;
-  }
-  .relative-8 {
-    @apply relative z-8;
-  }
-  .relative-9 {
-    @apply relative z-9;
-  }
-  .relative-10 {
-    @apply relative z-10;
-  }
-
-  .-absolute-1 {
-    @apply absolute -z-1;
-  }
-  .absolute-0 {
-    @apply absolute z-0;
-  }
-  .absolute-1 {
-    @apply absolute z-1;
-  }
-  .absolute-2 {
-    @apply absolute z-2;
-  }
-  .absolute-3 {
-    @apply absolute z-3;
-  }
-  .absolute-4 {
-    @apply absolute z-4;
-  }
-  .absolute-5 {
-    @apply absolute z-5;
-  }
-  .absolute-6 {
-    @apply absolute z-6;
-  }
-  .absolute-7 {
-    @apply absolute z-7;
-  }
-  .absolute-8 {
-    @apply absolute z-8;
-  }
-  .absolute-9 {
-    @apply absolute z-9;
-  }
-  .absolute-10 {
-    @apply absolute z-10;
-  }
-  .absolute-20 {
-    @apply absolute z-20;
-  }
-  .absolute-30 {
-    @apply absolute z-30;
-  }
-  .absolute-40 {
-    @apply absolute z-40;
-  }
-  .absolute-50 {
-    @apply absolute z-50;
-  }
-
-  .-fixed-1 {
-    @apply fixed -z-1;
-  }
-  .fixed-0 {
-    @apply fixed z-0;
-  }
-  .fixed-1 {
-    @apply fixed z-1;
-  }
-  .fixed-2 {
-    @apply fixed z-2;
-  }
-  .fixed-3 {
-    @apply fixed z-3;
-  }
-  .fixed-4 {
-    @apply fixed z-4;
-  }
-  .fixed-5 {
-    @apply fixed z-5;
-  }
-  .fixed-6 {
-    @apply fixed z-6;
-  }
-  .fixed-7 {
-    @apply fixed z-7;
-  }
-  .fixed-8 {
-    @apply fixed z-8;
-  }
-  .fixed-9 {
-    @apply fixed z-9;
-  }
-  .fixed-10 {
-    @apply fixed z-10;
-  }
   .border-hsla {
     @apply border border-white/20;
   }
@@ -272,7 +106,6 @@ body {
   .story-img-container {
     @apply relative md:h-dvh h-[90vh] w-full;
     filter: url("#flt_tag");
-    -webkit-filter: url("#flt_tag");
   }
 
   .story-img-mask {
@@ -307,5 +140,134 @@ body {
 
   .contact-clip-path-2 {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
+  }
+}
+
+.indicator-line {
+  @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
+}
+
+.indicator-line.active {
+  animation: indicator-line 0.5s ease infinite;
+  animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
+@keyframes indicator-line {
+  0% {
+    height: 4px;
+    transform: translateY(-0px);
+  }
+  50% {
+    height: 16px;
+    transform: translateY(-4px);
+  }
+  100% {
+    height: 4px;
+    transform: translateY(-0px);
+  }
+}
+
+/* From Uiverse.io by G4b413l */
+/* https://uiverse.io/G4b413l/tidy-walrus-92 */
+.three-body {
+  --uib-size: 35px;
+  --uib-speed: 0.8s;
+  --uib-color: #5d3fd3;
+  position: relative;
+  display: inline-block;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+}
+
+.three-body__dot {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+}
+
+.three-body__dot:after {
+  content: "";
+  position: absolute;
+  height: 0%;
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: var(--uib-color);
+  border-radius: 50%;
+}
+
+.three-body__dot:nth-child(1) {
+  bottom: 5%;
+  left: 0;
+  transform: rotate(60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(1)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite ease-in-out;
+  animation-delay: calc(var(--uib-speed) * -0.3);
+}
+
+.three-body__dot:nth-child(2) {
+  bottom: 5%;
+  right: 0;
+  transform: rotate(-60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(2)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15)
+    ease-in-out;
+}
+
+.three-body__dot:nth-child(3) {
+  bottom: -5%;
+  left: 0;
+  transform: translateX(116.666%);
+}
+
+.three-body__dot:nth-child(3)::after {
+  top: 0;
+  left: 0;
+  animation: wobble2 var(--uib-speed) infinite ease-in-out;
+}
+
+@keyframes spin78236 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wobble1 {
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-66%) scale(0.65);
+    opacity: 0.8;
+  }
+}
+
+@keyframes wobble2 {
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(66%) scale(0.65);
+    opacity: 0.8;
   }
 }
