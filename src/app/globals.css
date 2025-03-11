@@ -50,7 +50,6 @@ body {
   }
   .indicator-line.active {
     animation: indicator-line 0.5s ease infinite;
-    animation-delay: calc(attr(data-animation-order number) * 0.1s);
   }
 
   @keyframes indicator-line {

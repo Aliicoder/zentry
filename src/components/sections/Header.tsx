@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import SecondaryButton from "../buttons/SecondaryButton"
 const navLinks = ["Nexus", "Vault", "Prologue", "About", "Contact"]
 import { cn } from "@/lib/utils"
@@ -7,7 +7,7 @@ import { IoVolumeMuteOutline } from "react-icons/io5"
 import { useWindowScroll } from "react-use"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import Image from "next/image"
+import { PlayContext } from "@/context/playContext"
 function Header() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const { y: currentYScroll } = useWindowScroll()
@@ -15,6 +15,7 @@ function Header() {
   const [isShowHeader, setIsShowHeader] = useState(true)
   const [lastScrollPosition, setLastScrollPosition] = useState(0)
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
+  const { hasStarted } = useContext(PlayContext)
   const handleAudioPlaying = () => {
     setIsAudioPlaying((prev) => {
       const newState = !prev
@@ -47,7 +48,12 @@ function Header() {
       })
     }
   }, [isShowHeader])
-
+  useEffect(() => {
+    if (hasStarted) {
+      audioRef.current?.play()
+      setIsAudioPlaying(true)
+    }
+  }, [hasStarted])
   return (
     <section
       id="header-frame"
@@ -62,7 +68,7 @@ function Header() {
       >
         <div className="flex items-center">
           <div>
-            <Image
+            <img
               className="object-contain size-12 rounded-full"
               src="/img/logo.png"
               alt=""

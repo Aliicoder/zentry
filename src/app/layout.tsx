@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
+import { PlayProvider } from "@/context/playContext"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html className="hide-scroll" lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <PlayProvider>{children}</PlayProvider>
+      </body>
     </html>
   )
 }

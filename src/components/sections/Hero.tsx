@@ -1,21 +1,28 @@
 "use client"
-import React, { useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import PrimaryButton from "../buttons/PrimaryButton"
 import { HiOutlinePlayCircle } from "react-icons/hi2"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/all"
+import { PlayContext } from "@/context/playContext"
 gsap.registerPlugin(ScrollTrigger)
 
 const totalVideos = 4
 const Hero = () => {
   const nextVdRef = useRef<HTMLVideoElement>(null)
+  const mainVdRef = useRef<HTMLVideoElement>(null)
   const [currentIndex, setCurrentIndex] = useState(1)
   const [hasClicked, setHasClicked] = useState(false)
+  const { hasStarted, startTrailer } = useContext(PlayContext)
   const handleMiniVdClick = () => {
     setHasClicked(true)
     setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1)
   }
+  const handleStartClick = () => {
+    startTrailer()
+  }
+  const getVdSrc = (index: number) => `/videos/hero-${index}.mp4`
   useGSAP(
     () => {
       if (hasClicked) {
@@ -63,7 +70,11 @@ const Hero = () => {
       },
     })
   })
-  const getVdSrc = (index: number) => `/videos/hero-${index}.mp4`
+  useEffect(() => {
+    if (hasStarted) {
+      mainVdRef.current?.play()
+    }
+  }, [hasStarted])
   return (
     <section className="relative h-screen">
       <div
@@ -77,7 +88,10 @@ const Hero = () => {
           <p className="text-fs-20 font-mono tracking-widest font-semibold text-blue-75">
             Enter the Metagame Layer <br /> Unleash the Play Economy
           </p>
-          <PrimaryButton className="mt-8 S text-fs-16 ">
+          <PrimaryButton
+            onClick={handleStartClick}
+            className="mt-8 S text-fs-16 "
+          >
             <span className="mt-[1px]">Watch trailer </span>
             <HiOutlinePlayCircle className="text-fs-25" />
           </PrimaryButton>
@@ -107,9 +121,9 @@ const Hero = () => {
           className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
         />
         <video
+          ref={mainVdRef}
           src={getVdSrc(currentIndex)}
           loop
-          autoPlay
           muted
           className="absolute left-0 top-0 size-full object-cover object-center"
         />

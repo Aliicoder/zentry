@@ -1,7 +1,8 @@
 "use client"
+import { PlayContext } from "@/context/playContext"
 import { cn } from "@/lib/utils"
 import gsap from "gsap"
-import { ReactNode, useRef, useState } from "react"
+import { ReactNode, useContext, useEffect, useRef, useState } from "react"
 
 interface CardProps {
   className?: string
@@ -12,7 +13,9 @@ interface CardProps {
 }
 const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
   const cardRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const [transformStyle, setTransformStyle] = useState(``)
+  const { hasStarted } = useContext(PlayContext)
   const handleMouseMove = (e: React.MouseEvent) => {
     if (cardRef.current && title) {
       const { width, height, left, top } =
@@ -32,6 +35,11 @@ const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
       perspective: 300,
     })
   }
+  useEffect(() => {
+    if (hasStarted) {
+      videoRef.current?.play()
+    }
+  }, [hasStarted])
   return (
     <div
       ref={cardRef}
@@ -52,9 +60,9 @@ const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
         </p>
       </div>
       <video
+        ref={videoRef}
         className="size-full object-cover pointer-events-none"
         src={videoUrl}
-        autoPlay
         loop
         muted
       />

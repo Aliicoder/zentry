@@ -3,7 +3,6 @@ import React, { useRef } from "react"
 import AnimatedTitle from "../AnimatedTitle"
 import gsap from "gsap"
 import PrimaryButton from "../buttons/PrimaryButton"
-import Image from "next/image"
 
 const Story = () => {
   const imgRef = useRef<HTMLImageElement>(null)
@@ -51,7 +50,7 @@ const Story = () => {
               clipPath: "polygon(4% 0, 83% 21%, 100% 73%, 0% 100%)",
             }}
           >
-            <Image
+            <img
               onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
               src="/img/entrance.webp"
