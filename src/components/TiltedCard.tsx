@@ -52,7 +52,7 @@ const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
         </p>
       </div>
       <video
-        className="size-full object-cover"
+        className="size-full object-cover pointer-events-none"
         src={videoUrl}
         autoPlay
         loop
