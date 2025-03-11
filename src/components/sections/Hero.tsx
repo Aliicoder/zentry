@@ -71,10 +71,8 @@ const Hero = () => {
     })
   })
   useEffect(() => {
-    if (hasStarted) {
-      mainVdRef.current?.play()
-    }
-  }, [hasStarted])
+    mainVdRef.current?.play()
+  }, [])
   return (
     <section className="relative h-screen">
       <div

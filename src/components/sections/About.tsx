@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useEffect } from "react"
 import AnimatedTitle from "../AnimatedTitle"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
@@ -15,7 +15,6 @@ const About = () => {
         scrub: 0.5,
         pin: true,
         pinSpacing: true,
-        //markers: true,
       },
     })
     aboutImageAnimation.to("#about-section", {
@@ -26,6 +25,7 @@ const About = () => {
       ease: "power1.inOut",
     })
   })
+
   return (
     <section id="about-section">
       <div className="relative gap-5 pt-10  text-center flex flex-col items-center h-screen">

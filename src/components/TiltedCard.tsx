@@ -36,10 +36,8 @@ const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
     })
   }
   useEffect(() => {
-    if (hasStarted) {
-      videoRef.current?.play()
-    }
-  }, [hasStarted])
+    videoRef.current?.play()
+  }, [])
   return (
     <div
       ref={cardRef}
@@ -48,7 +46,8 @@ const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
       onMouseLeave={handleMouseLeave}
       className={cn(
         className,
-        "relative h-[450px] border rounded-lg overflow-hidden border-white/20 text-white transition-all"
+        `relative h-[450px] border rounded-lg overflow-hidden border-white/20 text-white transition-all
+        pointer-events-none select-none`
       )}
     >
       <div className="absolute-1 size-full gap-5 p-5 flex flex-col">
@@ -61,8 +60,9 @@ const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
       </div>
       <video
         ref={videoRef}
-        className="size-full object-cover pointer-events-none"
+        className="size-full object-cover pointer-events-none select-none"
         src={videoUrl}
+        playsInline
         loop
         muted
       />
