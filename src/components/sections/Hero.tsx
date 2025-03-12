@@ -5,22 +5,22 @@ import { HiOutlinePlayCircle } from "react-icons/hi2"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/all"
-import { PlayContext } from "@/context/playContext"
 gsap.registerPlugin(ScrollTrigger)
 
-const totalVideos = 4
+const totalVideos = 3
 const Hero = () => {
   const nextVdRef = useRef<HTMLVideoElement>(null)
   const mainVdRef = useRef<HTMLVideoElement>(null)
   const [currentIndex, setCurrentIndex] = useState(1)
   const [hasClicked, setHasClicked] = useState(false)
-  const { hasStarted, startTrailer } = useContext(PlayContext)
+  const [loading, isLoading] = useState(true)
+  const [loadedVideos, setLoadedVideos] = useState(0)
   const handleMiniVdClick = () => {
     setHasClicked(true)
     setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1)
   }
-  const handleStartClick = () => {
-    startTrailer()
+  const handleLoadedVideo = () => {
+    setLoadedVideos((prevIndex) => (prevIndex % totalVideos) + 1)
   }
   const getVdSrc = (index: number) => `/videos/hero-${index}.mp4`
   useGSAP(
@@ -38,8 +38,7 @@ const Hero = () => {
             nextVdRef.current?.play()
           },
         })
-        gsap.from("#current-video", {
-          transformOrigin: "center center",
+        gsap.from("#previewer", {
           scale: 0,
           duration: 1.5,
           ease: "power1.inOut",
@@ -70,11 +69,19 @@ const Hero = () => {
       },
     })
   })
-  useEffect(() => {
-    mainVdRef.current?.play()
-  }, [])
+
   return (
     <section className="relative h-screen">
+      {/* {loading && (
+        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
+          <div className="three-body">
+            <div className="three-body__dot"></div>
+            <div className="three-body__dot"></div>
+            <div className="three-body__dot"></div>
+          </div>
+        </div>
+      )} */}
+
       <div
         id="content-frame"
         className="relative-2 mt-28 mx-auto container flex"
@@ -86,10 +93,7 @@ const Hero = () => {
           <p className="text-fs-20 font-mono tracking-widest font-semibold text-blue-75">
             Enter the Metagame Layer <br /> Unleash the Play Economy
           </p>
-          <PrimaryButton
-            onClick={handleStartClick}
-            className="mt-8 S text-fs-16 "
-          >
+          <PrimaryButton className="mt-8 S text-fs-16 ">
             <span className="mt-[1px]">Watch trailer </span>
             <HiOutlinePlayCircle className="text-fs-25" />
           </PrimaryButton>
@@ -104,39 +108,46 @@ const Hero = () => {
       </h1>
       <div id="video-frame" className="absolute-1 inset-0">
         <h1
-          className="absolute-1  text-fs-61 md:scale-150 origin-bottom-right special-font 
+          className="absolute-4  text-fs-61 md:scale-150 origin-bottom-right special-font 
         uppercase font-zentry font-black right-10 md:right-32 text-blue-75 bottom-5  "
         >
           G<b>a</b>ming
         </h1>
-
+        <video
+          src={getVdSrc(currentIndex)}
+          loop
+          autoPlay
+          playsInline
+          muted
+          onLoad={handleLoadedVideo}
+          className="absolute-1  size-full object-cover object-center will-change-auto"
+        />
         <video
           ref={nextVdRef}
-          src={getVdSrc(currentIndex)}
-          loop
-          muted
           id="next-video"
-          className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
-        />
-        <video
-          ref={mainVdRef}
-          src={getVdSrc(currentIndex)}
           loop
           muted
-          className="absolute left-0 top-0 size-full object-cover object-center"
+          playsInline
+          onLoad={handleLoadedVideo}
+          src={getVdSrc(currentIndex)}
+          className="absolute-2 invisible top-1/2 left-1/2 center size-64 object-cover object-center 
+          will-change-auto"
         />
+
         <div
           onClick={handleMiniVdClick}
-          className="center absolute z-50 size-64 origin-center scale-50 opacity-0 
-              transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
+          className=" absolute-3 center left-1/2 top-1/2 z-50 size-64 origin-center scale-50 opacity-0
+            will-change-auto
+            transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
         >
           <video
-            ref={nextVdRef}
             src={getVdSrc((currentIndex % totalVideos) + 1)}
             loop
             muted
-            id="current-video"
-            className="size-64 origin-center scale-150 object-cover object-center"
+            playsInline
+            onLoad={handleLoadedVideo}
+            id="previewer"
+            className=" size-full object-cover origin-center"
           />
         </div>
       </div>
