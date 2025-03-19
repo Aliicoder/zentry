@@ -103,6 +103,7 @@ const Hero = () => {
           ref={trailerVideoRef}
           className="my-auto"
           playsInline
+          muted
           controls
           src={`/videos/trailer.webm`}
         />
