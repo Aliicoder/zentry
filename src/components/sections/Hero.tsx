@@ -111,13 +111,13 @@ const Hero = () => {
           >
             Enter the Metagame Layer <br /> Unleash the Play Economy
           </p>
-          <PrimaryButton
+          {/* <PrimaryButton
             onClick={handlePlayTrailer}
             className="mt-8 text-fs-16 max-md:text-fs-10"
           >
             <span className="mt-[1px]">Watch trailer </span>
             <HiOutlinePlayCircle className="text-fs-25 max-md:text-fs-13" />
-          </PrimaryButton>
+          </PrimaryButton> */}
         </div>
       </div>
 
