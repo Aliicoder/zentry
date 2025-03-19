@@ -47,7 +47,7 @@ const TiltedCard = ({ className, title, description, videoUrl }: CardProps) => {
       )}
     >
       <div className="absolute-1 size-full gap-5 p-5 flex flex-col">
-        <h1 className=" uppercase text-fs-49  font-black font-zentry special-font">
+        <h1 className="uppercase text-fs-49 font-zentry special-font">
           {title}
         </h1>
         <p className="text-balance max-md:text-fs-16 text-fs-20 font-general max-w-[350px] line-clamp-4">

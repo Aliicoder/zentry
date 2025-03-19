@@ -33,15 +33,11 @@
     font-style: normal;
   }
 }
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 :root {
   --background: #ffffff;
 }
 body {
-  @apply bg-gray-50 text-gray-900  overflow-x-hidden w-[100dvw] font-sans;
+  @apply bg-gray-50 text-gray-900 overflow-x-hidden w-[100dvw] font-sans;
 }
 
 @layer utilities {

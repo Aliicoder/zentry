@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className="hide-scroll" lang="en">
-      <body className={`antialiased`}>
+      <body>
         <PlayProvider>{children}</PlayProvider>
       </body>
     </html>

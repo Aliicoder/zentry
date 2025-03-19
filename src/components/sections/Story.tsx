@@ -39,7 +39,7 @@ const Story = () => {
         </h1>
         <div className="relative flex flex-col  items-center ">
           <AnimatedTitle
-            className="absolute-1 !text-fs-39 max-md:-translate-y-1/2 md:!text-fs-61 mix-blend-difference "
+            className="absolute-1 text-fs-39 max-md:-translate-y-1/2 md:text-fs-61 mix-blend-difference "
             title="The st<b>o</b>ry <br /> of a hidden real<b>m</b>"
           />
 

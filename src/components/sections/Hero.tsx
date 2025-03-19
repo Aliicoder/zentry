@@ -111,14 +111,14 @@ const Hero = () => {
 
       <h1
         className="-absolute-1  text-fs-61 md:scale-150 origin-bottom-right  
-        special-font uppercase font-zentry font-black right-10 md:right-32 text-black bottom-5  "
+        special-font uppercase font-zentry right-10 md:right-32 text-black bottom-5  "
       >
         G<b>a</b>ming
       </h1>
       <div id="video-frame" className="absolute-1 inset-0">
         <h1
           className="absolute-4  text-fs-61 md:scale-150 origin-bottom-right special-font 
-        uppercase font-zentry font-black right-10 md:right-32 text-blue-75 bottom-5  "
+        uppercase font-zentry right-10 md:right-32 text-blue-75 bottom-5  "
         >
           G<b>a</b>ming
         </h1>
