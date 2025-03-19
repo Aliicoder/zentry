@@ -39,10 +39,7 @@ const AnimatedTitle = ({ title, className }: Props) => {
   return (
     <div
       ref={titleRef}
-      className={cn(
-        "mt-5 text-center text-fs-25 uppercase leading-[0.8]",
-        className
-      )}
+      className={cn("mt-5 text-center text-fs-25 uppercase", className)}
     >
       {title.split("<br />").map((line, index) => (
         <div

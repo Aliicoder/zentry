@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/all"
 import { AudioContext } from "@/context/AudioContext"
+import { IoClose } from "react-icons/io5"
 gsap.registerPlugin(ScrollTrigger)
 
 const totalVideos = 3
@@ -16,32 +17,29 @@ const Hero = () => {
   const { setIsAudioPlaying } = useContext(AudioContext)
 
   const nextVdRef = useRef<HTMLVideoElement>(null)
-  const trailerRef = useRef<HTMLVideoElement>(null)
+  const trailerVideoRef = useRef<HTMLVideoElement>(null)
+  const trailerWrapperRef = useRef<HTMLDivElement>(null)
 
   const handleMiniVdClick = () => {
     setHasClicked(true)
     setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1)
   }
   const handlePlayTrailer = () => {
-    if (trailerRef.current) {
+    if (trailerVideoRef.current && trailerWrapperRef.current) {
+      trailerWrapperRef.current.classList.remove("hidden")
+      trailerWrapperRef.current.classList.add("flex")
       setIsAudioPlaying(false)
-      trailerRef.current.classList.remove("hidden")
-      trailerRef.current.play()
-      trailerRef.current.requestFullscreen().catch((err) => {
-        console.error("Fullscreen request failed", err)
-      })
+      trailerVideoRef.current?.play()
     }
   }
-  useEffect(() => {
-    const closeVideo = () => {
-      if (!document.fullscreenElement && trailerRef.current) {
-        trailerRef.current.pause()
-        trailerRef.current.classList.add("hidden")
-      }
+  const handleCloseTrailer = () => {
+    if (trailerVideoRef.current && trailerWrapperRef.current) {
+      trailerVideoRef.current.pause()
+      trailerWrapperRef.current.classList.add("hidden")
+      trailerWrapperRef.current.classList.remove("flex")
     }
-    document.addEventListener("fullscreenchange", closeVideo)
-    return () => document.removeEventListener("fullscreenchange", closeVideo)
-  }, [])
+  }
+
   const getVdSrc = (index: number) => `/videos/hero-${index}.mp4`
   useGSAP(
     () => {
@@ -91,12 +89,23 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen">
-      <video
-        className=" hidden z-40 fixed w-dvw h-dvh"
-        ref={trailerRef}
-        controls
-        src={`/videos/trailer.webm`}
-      />
+      <div
+        ref={trailerWrapperRef}
+        className="z-40 hidden fixed w-dvw h-dvh  items-center bg-black"
+      >
+        <button
+          onClick={handleCloseTrailer}
+          className="absolute top-10 right-10 text-white text-4xl hover:text-gray-400"
+        >
+          <IoClose />
+        </button>
+        <video
+          ref={trailerVideoRef}
+          className="my-auto"
+          controls
+          src={`/videos/trailer.webm`}
+        />
+      </div>
       <div
         id="content-frame"
         className="relative-2 mt-28 mx-auto container flex"
