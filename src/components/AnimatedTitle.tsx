@@ -22,7 +22,6 @@ const AnimatedTitle = ({ title, className }: Props) => {
           start: "top center",
           end: "bottom bottom",
           toggleActions: "play none none reverse",
-          //markers: true, // Make sure this is enabled for debugging
         },
       })
 
@@ -41,8 +40,8 @@ const AnimatedTitle = ({ title, className }: Props) => {
     <div
       ref={titleRef}
       className={cn(
-        className,
-        "mt-5 text-center text-fs-25 uppercase leading-[0.8]"
+        "mt-5 text-center text-fs-25 uppercase leading-[0.8]",
+        className
       )}
     >
       {title.split("<br />").map((line, index) => (

@@ -1,27 +1,44 @@
 "use client"
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useRef, useState } from "react"
 import PrimaryButton from "../buttons/PrimaryButton"
 import { HiOutlinePlayCircle } from "react-icons/hi2"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/all"
+import { AudioContext } from "@/context/AudioContext"
 gsap.registerPlugin(ScrollTrigger)
 
 const totalVideos = 3
 const Hero = () => {
-  const nextVdRef = useRef<HTMLVideoElement>(null)
-  const mainVdRef = useRef<HTMLVideoElement>(null)
   const [currentIndex, setCurrentIndex] = useState(1)
   const [hasClicked, setHasClicked] = useState(false)
-  const [loading, isLoading] = useState(true)
-  const [loadedVideos, setLoadedVideos] = useState(0)
+
+  const { setIsAudioPlaying } = useContext(AudioContext)
+
+  const nextVdRef = useRef<HTMLVideoElement>(null)
+  const trailerRef = useRef<HTMLVideoElement>(null)
+
   const handleMiniVdClick = () => {
     setHasClicked(true)
     setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1)
   }
-  const handleLoadedVideo = () => {
-    setLoadedVideos((prevIndex) => (prevIndex % totalVideos) + 1)
+  const handlePlayTrailer = () => {
+    if (trailerRef.current) {
+      setIsAudioPlaying(false)
+      trailerRef.current.classList.remove("hidden")
+      trailerRef.current.play()
+      trailerRef.current.requestFullscreen().catch((err) => {
+        console.error("Fullscreen request failed", err)
+      })
+    }
   }
+
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement && trailerRef.current) {
+      trailerRef.current.pause()
+      trailerRef.current.classList.add("hidden")
+    }
+  })
   const getVdSrc = (index: number) => `/videos/hero-${index}.mp4`
   useGSAP(
     () => {
@@ -65,23 +82,18 @@ const Hero = () => {
         start: "center center",
         end: "bottom center",
         scrub: true,
-        // markers: true,
       },
     })
   })
 
   return (
     <section className="relative h-screen">
-      {/* {loading && (
-        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
-          <div className="three-body">
-            <div className="three-body__dot"></div>
-            <div className="three-body__dot"></div>
-            <div className="three-body__dot"></div>
-          </div>
-        </div>
-      )} */}
-
+      <video
+        className=" hidden z-40 fixed w-dvw h-dvh"
+        ref={trailerRef}
+        controls
+        src={`/videos/trailer.mp4`}
+      />
       <div
         id="content-frame"
         className="relative-2 mt-28 mx-auto container flex"
@@ -100,8 +112,8 @@ const Hero = () => {
             Enter the Metagame Layer <br /> Unleash the Play Economy
           </p>
           <PrimaryButton
-            className="mt-8 text-fs-16 
-            max-md:text-fs-10"
+            onClick={handlePlayTrailer}
+            className="mt-8 text-fs-16 max-md:text-fs-10"
           >
             <span className="mt-[1px]">Watch trailer </span>
             <HiOutlinePlayCircle className="text-fs-25 max-md:text-fs-13" />
@@ -128,7 +140,6 @@ const Hero = () => {
           autoPlay
           playsInline
           muted
-          onLoad={handleLoadedVideo}
           className="absolute-1  size-full object-cover object-center will-change-auto"
         />
         <video
@@ -137,7 +148,6 @@ const Hero = () => {
           loop
           muted
           playsInline
-          onLoad={handleLoadedVideo}
           src={getVdSrc(currentIndex)}
           className="absolute-2 invisible top-1/2 left-1/2 center size-64 object-cover object-center 
           will-change-auto"
@@ -154,7 +164,6 @@ const Hero = () => {
             loop
             muted
             playsInline
-            onLoad={handleLoadedVideo}
             id="previewer"
             className=" size-full object-cover origin-center"
           />

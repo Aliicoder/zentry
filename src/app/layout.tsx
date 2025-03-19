@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { PlayProvider } from "@/context/playContext"
+import { AudioProvider } from "@/context/AudioContext"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html className="hide-scroll" lang="en">
       <body>
-        <PlayProvider>{children}</PlayProvider>
+        <AudioProvider>{children}</AudioProvider>
       </body>
     </html>
   )

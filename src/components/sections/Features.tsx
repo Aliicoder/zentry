@@ -63,7 +63,7 @@ const Features = () => {
               ` max-md:hidden max-md:col-span-2 max-md:mr-10 h-full p-5 flex md:justify-center items-center overflow-hidden  `
             )}
           >
-            <h1 className=" uppercase max-md:text-fs-31 text-fs-49  font-black font-zentry special-font">
+            <h1 className=" uppercase max-md:text-fs-31 text-fs-49  font-zentry special-font">
               More is Coming
               <div>soon !</div>
             </h1>

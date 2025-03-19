@@ -7,22 +7,16 @@ import { IoVolumeMuteOutline } from "react-icons/io5"
 import { useWindowScroll } from "react-use"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { PlayContext } from "@/context/playContext"
+import { AudioContext } from "@/context/AudioContext"
 function Header() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const { y: currentYScroll } = useWindowScroll()
   const [lastScrollPosition, setLastScrollPosition] = useState(0)
   const [giveHeaderBg, setGiveHeaderBg] = useState(true)
   const [isShowHeader, setIsShowHeader] = useState(true)
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false)
-  const { hasStarted } = useContext(PlayContext)
+  const { isAudioPlaying, setIsAudioPlaying } = useContext(AudioContext)
   const handleAudioPlaying = () => {
-    setIsAudioPlaying((prev) => {
-      const newState = !prev
-      if (newState == true) audioRef.current?.play()
-      else audioRef.current?.pause()
-      return newState
-    })
+    setIsAudioPlaying(true)
   }
   useEffect(() => {
     if (currentYScroll == 0) {
@@ -48,7 +42,13 @@ function Header() {
       })
     }
   }, [isShowHeader])
-
+  useEffect(() => {
+    if (isAudioPlaying) {
+      audioRef.current?.play()
+    } else {
+      audioRef.current?.pause()
+    }
+  }, [isAudioPlaying])
   return (
     <section
       id="header-frame"
