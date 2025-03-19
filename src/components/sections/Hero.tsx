@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import PrimaryButton from "../buttons/PrimaryButton"
 import { HiOutlinePlayCircle } from "react-icons/hi2"
 import { useGSAP } from "@gsap/react"
@@ -32,13 +32,16 @@ const Hero = () => {
       })
     }
   }
-
-  document.addEventListener("fullscreenchange", () => {
-    if (!document.fullscreenElement && trailerRef.current) {
-      trailerRef.current.pause()
-      trailerRef.current.classList.add("hidden")
+  useEffect(() => {
+    const closeVideo = () => {
+      if (!document.fullscreenElement && trailerRef.current) {
+        trailerRef.current.pause()
+        trailerRef.current.classList.add("hidden")
+      }
     }
-  })
+    document.addEventListener("fullscreenchange", closeVideo)
+    return () => document.removeEventListener("fullscreenchange", closeVideo)
+  }, [])
   const getVdSrc = (index: number) => `/videos/hero-${index}.mp4`
   useGSAP(
     () => {

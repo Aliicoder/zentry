@@ -1,6 +1,5 @@
 "use client"
 import { createContext, Dispatch, SetStateAction, useState } from "react"
-
 interface IAudioContext {
   isAudioPlaying: boolean
   setIsAudioPlaying: Dispatch<SetStateAction<boolean>>
