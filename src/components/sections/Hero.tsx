@@ -26,10 +26,10 @@ const Hero = () => {
   }
   const handlePlayTrailer = () => {
     if (trailerVideoRef.current && trailerWrapperRef.current) {
+      setIsAudioPlaying(false)
+
       trailerWrapperRef.current.classList.remove("hidden")
       trailerWrapperRef.current.classList.add("flex")
-      setIsAudioPlaying(false)
-      trailerVideoRef.current?.play()
     }
   }
   const handleCloseTrailer = () => {
@@ -102,6 +102,7 @@ const Hero = () => {
         <video
           ref={trailerVideoRef}
           className="my-auto"
+          playsInline
           controls
           src={`/videos/trailer.webm`}
         />
