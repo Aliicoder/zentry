@@ -11,9 +11,9 @@ import { PlayContext } from "@/context/playContext"
 function Header() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const { y: currentYScroll } = useWindowScroll()
+  const [lastScrollPosition, setLastScrollPosition] = useState(0)
   const [giveHeaderBg, setGiveHeaderBg] = useState(true)
   const [isShowHeader, setIsShowHeader] = useState(true)
-  const [lastScrollPosition, setLastScrollPosition] = useState(0)
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const { hasStarted } = useContext(PlayContext)
   const handleAudioPlaying = () => {
@@ -48,12 +48,7 @@ function Header() {
       })
     }
   }, [isShowHeader])
-  useEffect(() => {
-    if (hasStarted) {
-      audioRef.current?.play()
-      setIsAudioPlaying(true)
-    }
-  }, [hasStarted])
+
   return (
     <section
       id="header-frame"

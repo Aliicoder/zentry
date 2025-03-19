@@ -87,15 +87,24 @@ const Hero = () => {
         className="relative-2 mt-28 mx-auto container flex"
       >
         <div className="p-10  flex flex-col">
-          <h1 className="text-fs-49 special-font uppercase font-zentry font-black right-5 text-blue-75">
+          <h1
+            className="text-fs-49 special-font uppercase font-zentry font-black right-5 text-blue-75
+            max-md:text-fs-25"
+          >
             redefi<b>n</b>
           </h1>
-          <p className="text-fs-20 font-mono tracking-widest font-semibold text-blue-75">
+          <p
+            className="text-fs-20 font-mono tracking-widest font-semibold text-blue-75
+          max-md:text-fs-16 max-md:mt-2"
+          >
             Enter the Metagame Layer <br /> Unleash the Play Economy
           </p>
-          <PrimaryButton className="mt-8 S text-fs-16 ">
+          <PrimaryButton
+            className="mt-8 text-fs-16 
+            max-md:text-fs-10"
+          >
             <span className="mt-[1px]">Watch trailer </span>
-            <HiOutlinePlayCircle className="text-fs-25" />
+            <HiOutlinePlayCircle className="text-fs-25 max-md:text-fs-13" />
           </PrimaryButton>
         </div>
       </div>
@@ -136,7 +145,8 @@ const Hero = () => {
 
         <div
           onClick={handleMiniVdClick}
-          className=" absolute-3 center left-1/2 top-1/2 z-50 size-64 origin-center scale-50 opacity-0
+          className=" absolute-3 center left-1/2 top-1/2 z-50 size-64 origin-center scale-[30%] rounded-xl overflow-hidden
+            animate-pulse
             will-change-auto
             transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
         >
