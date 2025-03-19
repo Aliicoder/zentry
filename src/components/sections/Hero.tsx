@@ -145,8 +145,7 @@ const Hero = () => {
 
         <div
           onClick={handleMiniVdClick}
-          className=" absolute-3 center left-1/2 top-1/2 z-50 size-64 origin-center scale-[30%] rounded-xl overflow-hidden
-            animate-pulse
+          className=" absolute-3 center left-1/2 top-1/2 z-50 size-64 origin-center scale-50 opacity-0
             will-change-auto
             transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
         >

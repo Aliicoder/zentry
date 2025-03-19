@@ -29,9 +29,14 @@
   @font-face {
     font-family: "zentry";
     src: url("/fonts/zentry-regular.woff2") format("woff2");
+    font-weight: 100; /* Adjust based on actual weight */
+    font-style: normal;
   }
 }
-
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 :root {
   --background: #ffffff;
 }
