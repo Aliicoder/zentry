@@ -24,21 +24,21 @@ const Hero = () => {
     setHasClicked(true)
     setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1)
   }
-  const handlePlayTrailer = () => {
-    if (trailerVideoRef.current && trailerWrapperRef.current) {
-      setIsAudioPlaying(false)
+  // const handlePlayTrailer = () => {
+  //   if (trailerVideoRef.current && trailerWrapperRef.current) {
+  //     setIsAudioPlaying(false)
 
-      trailerWrapperRef.current.classList.remove("hidden")
-      trailerWrapperRef.current.classList.add("flex")
-    }
-  }
-  const handleCloseTrailer = () => {
-    if (trailerVideoRef.current && trailerWrapperRef.current) {
-      trailerVideoRef.current.pause()
-      trailerWrapperRef.current.classList.add("hidden")
-      trailerWrapperRef.current.classList.remove("flex")
-    }
-  }
+  //     trailerWrapperRef.current.classList.remove("hidden")
+  //     trailerWrapperRef.current.classList.add("flex")
+  //   }
+  // }
+  // const handleCloseTrailer = () => {
+  //   if (trailerVideoRef.current && trailerWrapperRef.current) {
+  //     trailerVideoRef.current.pause()
+  //     trailerWrapperRef.current.classList.add("opacity")
+  //     trailerWrapperRef.current.classList.remove("flex")
+  //   }
+  // }
 
   const getVdSrc = (index: number) => `/videos/hero-${index}.mp4`
   useGSAP(
@@ -91,10 +91,10 @@ const Hero = () => {
     <section className="relative h-screen">
       <div
         ref={trailerWrapperRef}
-        className="z-40 hidden fixed w-dvw h-dvh  items-center bg-black"
+        className="z-40 opacity-0 fixed w-dvw h-dvh  items-center bg-black"
       >
         <button
-          onClick={handleCloseTrailer}
+          //onClick={handleCloseTrailer}
           className="absolute top-10 right-10 text-white text-4xl hover:text-gray-400"
         >
           <IoClose />
@@ -126,7 +126,7 @@ const Hero = () => {
             Enter the Metagame Layer <br /> Unleash the Play Economy
           </p>
           <PrimaryButton
-            onClick={handlePlayTrailer}
+            //onClick={handlePlayTrailer}
             className="mt-8 text-fs-16 max-md:text-fs-10"
           >
             <span className="mt-[1px]">Watch trailer </span>
