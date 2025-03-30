@@ -8,7 +8,6 @@ import { useWindowScroll } from "react-use"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { AudioContext } from "@/context/AudioContext"
-import Image from "next/image"
 function Header() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const { y: currentYScroll } = useWindowScroll()
@@ -64,7 +63,7 @@ function Header() {
       >
         <div className="flex items-center">
           <div>
-            <Image
+            <img
               className="object-contain size-12 rounded-full"
               src="/img/logo.png"
               alt=""

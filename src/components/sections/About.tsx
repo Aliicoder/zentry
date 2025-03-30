@@ -4,7 +4,6 @@ import AnimatedTitle from "../AnimatedTitle"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/all"
-import Image from "next/image"
 gsap.registerPlugin(ScrollTrigger)
 const About = () => {
   useGSAP(() => {
@@ -42,7 +41,7 @@ const About = () => {
             id="about-image"
             className="origin-bottom translate-y-full absolute-1  left-0  bottom-0  w-[100vw] h-[100vh]"
           >
-            <Image
+            <img
               className="size-full object-cover"
               src="/img/about.webp"
               alt=""
