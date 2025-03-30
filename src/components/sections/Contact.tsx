@@ -1,5 +1,6 @@
 import React from "react"
 import PrimaryButton from "../buttons/PrimaryButton"
+import Image from "next/image"
 
 const Contact = () => {
   return (
@@ -20,7 +21,7 @@ const Contact = () => {
             clipPath: "polygon(25% 0%, 74% 0, 69% 64%, 34% 73%)",
           }}
         >
-          <img className="object-contain" src="/img/contact-1.webp" alt="" />
+          <Image className="object-contain" src="/img/contact-1.webp" alt="" />
         </div>
         <div
           className="max-md:hidden size-60 lg:size-96 absolute-1 top-full center left-[15%]"
@@ -28,7 +29,7 @@ const Contact = () => {
             clipPath: "polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%)",
           }}
         >
-          <img className="object-contain" src="/img/contact-2.webp" alt="" />
+          <Image className="object-contain" src="/img/contact-2.webp" alt="" />
         </div>
         <div
           className="size-60 lg:size-96  absolute-1 max-md:top-0 top-1/2 center left-full max-md:left-1/2"
@@ -36,7 +37,7 @@ const Contact = () => {
             clipPath: "polygon(16% 0, 89% 15%, 75% 100%, 0 97%)",
           }}
         >
-          <img className="object-contain" src="/img/swordman.webp" alt="" />
+          <Image className="object-contain" src="/img/swordman.webp" alt="" />
         </div>
       </div>
     </section>

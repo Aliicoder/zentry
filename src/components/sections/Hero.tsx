@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useRef, useState } from "react"
 import PrimaryButton from "../buttons/PrimaryButton"
 import { HiOutlinePlayCircle } from "react-icons/hi2"
 import { useGSAP } from "@gsap/react"
