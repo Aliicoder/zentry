@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import { FaTwitter } from "react-icons/fa6"
 import { PiTwitchLogoFill } from "react-icons/pi"
