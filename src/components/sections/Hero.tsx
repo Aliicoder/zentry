@@ -89,12 +89,12 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen">
-      <div
+      {/* <div
         ref={trailerWrapperRef}
         className="z-40 opacity-0 fixed w-dvw h-dvh  items-center bg-black"
       >
         <button
-          //onClick={handleCloseTrailer}
+          onClick={handleCloseTrailer}
           className="absolute top-10 right-10 text-white text-4xl hover:text-gray-400"
         >
           <IoClose />
@@ -107,7 +107,7 @@ const Hero = () => {
           controls
           src={`/videos/trailer.webm`}
         />
-      </div>
+      </div> */}
       <div
         id="content-frame"
         className="relative-2 mt-28 mx-auto container flex"
